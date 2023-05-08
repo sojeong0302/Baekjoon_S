@@ -1,21 +1,3 @@
-// const fs = require("fs");
-// const filePath = process.platform === 'linux' ? '/dev/stdin' : __dirname+'/example.txt';
-// let input = fs.readFileSync(filePath).toString().split("\n");
-// input = input[0].split(" ").map((item)=>+item);
-
-// for (let i = 0; i < input.length; i++) {
-//     const [n, m] = input[i].split(' ').map(Number);
-//     console.log(combi(m, n));
-// }
-
-// function combi(m, n) {
-//     let result = 1;
-//     for (let i = 1; i <= n; i++) {
-//         result = result * (m - n + i) / i;
-//     }
-//     return result;
-// }
-
 const fs = require("fs");
 const readline = require("readline");
 
