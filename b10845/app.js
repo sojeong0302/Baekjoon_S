@@ -1,47 +1,32 @@
-const fs = require("fs");
-const readline = require("readline");
-
-const filePath = process.platform === "linux" ? "/dev/stdin" : __dirname + "/example.txt";
-const rl = readline.createInterface({
-    input: fs.createReadStream(filePath),
-});
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
 const queue = [];
-let result = '';
-let N=0;
-//N이 비어있을때 N을 입력받음
+const answer = [];
+const len = Number(input[0]);
 
-rl.on('line', (input) => {
-  if (!N) {
-    N = +input;
-    return;
-  }
-
-  if (1 <= N && N <= 10000)
-  {
-    const [command,num]=input.split(' '); //입력된 문자열에서 명령어 부분을 나타내는 변수
-
-    switch(command){
-      case "Push":
-        queue.push(num);
-        break;
+for(let i=1; i<=len; i++){
+    let cmd = input[i].split(' ');
+    switch(cmd[0]) {
+        case 'push':
+            queue.push(cmd[1]);
+            break;
         case 'pop':
-          result += queue.length ? queue.shift() + '\n' : '-1\n';
-          break;
+            answer.push(queue.shift() || -1);
+            break;
         case 'size':
-          result += queue.length + '\n';
-          break;
+            answer.push(queue.length);
+            break;
         case 'empty':
-          result += queue.length ? '0\n' : '1\n';
-          break;
+            answer.push(queue[0] ? 0 : 1);
+            break;
         case 'front':
-          result += queue.length ? queue[0] + '\n' : '-1\n';
-          break;
+            answer.push(queue[0] || -1);
+            break;
         case 'back':
-          result += queue.length ? queue[queue.length - 1] + '\n' : '-1\n';
-          break;
+            answer.push(queue[queue.length-1] || -1);
+            break;
     }
-  }
-}).on('close', () => {
-  console.log(result);
-});
+}
+
+console.log(answer.join('\n'));

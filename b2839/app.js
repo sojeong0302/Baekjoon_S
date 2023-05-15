@@ -69,7 +69,7 @@ rl.on("line", function (line) {
 }).on("close", function () {
   let answer = -1; // 답을 저장할 변수를 초기값 -1로 지정
 
-  for (let i = Math.floor(N / 5); i >= 0; i--) { // 5kg 봉지부터 최대한 많이 들고 가는 방법을 시도
+  for (let i = Math.floor(N / 5); i >= 0; i--) { // 5kg 봉지부터 최                        대한 많이 들고 가는 방법을 시도
     let j = N - i * 5; // 남은 설탕의 양 계산
 
     if (j % 3 === 0) { // 3kg 봉지로 채울 수 있는지 확인
